@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title><!-- {{DOCUMENT_TITLE}} --></title>
+<meta name="description" content="<!-- {{DOCUMENT_DESCRIPTION}} -->">
+<style>
+  /* ============================================================
+     IT Document Style System Tokens
+     装飾3要素（グラデーション・絵文字・アイコンカード）を廃止し、
+     罫線・余白・構造・朱色アクセント1色で階層を形成する。
+     ============================================================ */
+  :root {
+    --paper: #fbfaf7;
+    --panel: #f2f0ea;
+    --ink: #15171c;
+    --ink-2: #31353d;
+    --muted: #666c76;
+    --rule: #d6d1c6;
+    --rule-2: #b9b2a3;
+    --accent: #b5371f;
+    --accent-soft: #f6e7e3;
+    --ok: #2c6a4f;
+    --warn: #8a6413;
+    --maxw: 880px;
+    --font-body: "Hiragino Sans", "Yu Gothic UI", "Noto Sans JP", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.85;
+    letter-spacing: .01em;
+    text-wrap: pretty;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- 表題 / ヘッダー ---------- */
+  header {
+    border-bottom: 2px solid var(--ink);
+    padding: clamp(40px, 7vw, 64px) 0 26px;
+    margin-bottom: 0;
+  }
+
+  .doc-label {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: .2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin: 0 0 16px;
+  }
+
+  h1 {
+    font-size: clamp(24px, 3.6vw, 34px);
+    font-weight: 700;
+    line-height: 1.42;
+    letter-spacing: .01em;
+    margin: 0 0 18px;
+    text-wrap: balance;
+  }
+
+  .abstract {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--ink-2);
+    margin: 0;
+    max-width: 54em;
+  }
+
+  .abstract b { color: var(--ink); }
+
+  /* ---------- セクション / 見出し ---------- */
+  section {
+    padding: 44px 0 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  section:last-of-type {
+    border-bottom: 0;
+    padding-bottom: 56px;
+  }
+
+  .h-row {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+
+  .h-num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: .14em;
+    color: var(--accent);
+    flex: 0 0 auto;
+  }
+
+  h2 {
+    font-size: clamp(19px, 2.4vw, 23px);
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 0;
+    letter-spacing: .01em;
+  }
+
+  h3 {
+    font-size: 14.5px;
+    letter-spacing: .06em;
+    color: var(--muted);
+    font-weight: 700;
+    margin: 30px 0 10px;
+    text-transform: uppercase;
+  }
+
+  p { margin: 0 0 16px; }
+
+  /* ---------- 本章の結論（Conclusion Box） ---------- */
+  .conclusion {
+    font-size: 15px;
+    color: var(--ink-2);
+    border-left: 3px solid var(--accent);
+    padding: 4px 0 4px 16px;
+    margin: 14px 0 26px;
+    background: transparent;
+  }
+
+  /* ---------- 表（レスポンシブ対応テーブル） ---------- */
+  .tbl-wrap {
+    margin: 18px 0 26px;
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+
+  caption {
+    caption-side: top;
+    text-align: left;
+    font-size: 12.5px;
+    color: var(--muted);
+    letter-spacing: .04em;
+    padding-bottom: 8px;
+  }
+
+  th, td {
+    border-bottom: 1px solid var(--rule);
+    padding: 11px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  thead th {
+    border-bottom: 1.5px solid var(--ink);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: .03em;
+    white-space: nowrap;
+  }
+
+  tbody th {
+    font-weight: 600;
+    white-space: nowrap;
+    background: var(--panel);
+  }
+
+  tbody tr:last-child td,
+  tbody tr:last-child th {
+    border-bottom: 1.5px solid var(--rule-2);
+  }
+
+  td.mid, th.mid { text-align: center; }
+
+  .mark {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  .mark.y { color: var(--ok); }
+  .mark.t { color: var(--warn); }
+  .mark.n { color: var(--accent); }
+
+  .note-cell {
+    font-size: 13px;
+    color: var(--ink-2);
+  }
+
+  /* ---------- 比較グリッド（2ペイン対比） ---------- */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin: 14px 0 18px;
+  }
+
+  .split > div {
+    background: var(--paper);
+    padding: 16px 18px;
+  }
+
+  .split h5 {
+    margin: 0 0 8px;
+    font-size: 12px;
+    letter-spacing: .1em;
+    font-weight: 700;
+    font-family: var(--font-mono);
+  }
+
+  .split .col-a h5, .split .use h5 { color: var(--ok); }
+  .split .col-b h5, .split .bad h5 { color: var(--accent); }
+  .split ul { margin: 0; padding-left: 16px; font-size: 14px; line-height: 1.7; }
+  .split li { margin-bottom: 6px; }
+
+  /* ---------- 代替文法：リーダー数字付き順序リスト ---------- */
+  ol.grammar {
+    counter-reset: g;
+    list-style: none;
+    margin: 18px 0 22px;
+    padding: 0;
+  }
+
+  ol.grammar li {
+    counter-increment: g;
+    position: relative;
+    padding-left: 44px;
+    margin-bottom: 18px;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  ol.grammar li::before {
+    content: counter(g, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: .15em;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent);
+    border-bottom: 1px solid var(--rule-2);
+    padding-right: 8px;
+  }
+
+  ol.grammar strong { font-weight: 700; }
+
+  /* ---------- 注釈・総括パネル ---------- */
+  .it-line {
+    font-size: 14.5px;
+    background: var(--panel);
+    border-left: 2px solid var(--rule-2);
+    padding: 12px 16px;
+    margin: 16px 0 20px;
+    color: var(--ink-2);
+  }
+
+  .it-line b { color: var(--ink); }
+
+  /* ---------- 定義・落としどころリスト ---------- */
+  dl.land { margin: 18px 0 6px; }
+
+  dl.land dt {
+    font-size: 14.5px;
+    font-weight: 700;
+    padding-top: 12px;
+    border-top: 1px solid var(--rule);
+  }
+
+  dl.land dt:first-of-type {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  dl.land dd {
+    margin: 4px 0 14px;
+    font-size: 14.5px;
+    color: var(--ink-2);
+    line-height: 1.75;
+  }
+
+  /* ---------- コードブロック ---------- */
+  pre {
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    padding: 14px 16px;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    line-height: 1.6;
+    margin: 16px 0 20px;
+  }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: var(--panel);
+    padding: 2px 5px;
+    border: 1px solid var(--rule);
+  }
+
+  pre code {
+    background: transparent;
+    padding: 0;
+    border: none;
+  }
+
+  /* ---------- フッター ---------- */
+  footer {
+    border-top: 2px solid var(--ink);
+    padding: 24px 0 56px;
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  /* ---------- 印刷スタイル最適化 ---------- */
+  @media print {
+    :root { --paper: #fff; --panel: #f4f4f2; }
+    body { font-size: 10.5pt; line-height: 1.65; }
+    header { padding-top: 0; }
+    section { page-break-inside: auto; padding: 20pt 0 4pt; }
+    .item, .tbl-wrap, .split, pre { page-break-inside: avoid; }
+    .split { grid-template-columns: 1fr 1fr; }
+    a { color: inherit; text-decoration: none; }
+  }
+
+  /* ---------- モバイル表示（表の縦積みリフロー） ---------- */
+  @media (max-width: 640px) {
+    .wrap { padding: 0 18px; }
+    .split { grid-template-columns: 1fr; }
+
+    .tbl-wrap { overflow-x: visible; }
+    table, tbody, tr, th, td { display: block; width: 100%; }
+    thead { display: none; }
+    caption { padding-bottom: 6px; }
+    tbody tr {
+      border-bottom: 1.5px solid var(--rule-2);
+      padding: 12px 0 14px;
+    }
+    tbody th {
+      background: none;
+      border-bottom: 0;
+      padding: 0 0 8px;
+      font-size: 15.5px;
+      white-space: normal;
+    }
+    tbody td {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      border-bottom: 0;
+      padding: 3px 0;
+      font-size: 14px;
+    }
+    tbody td::before {
+      content: attr(data-label);
+      flex: 0 0 7.5em;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: .02em;
+    }
+    tbody td.note-cell { font-size: 13px; color: var(--ink-2); }
+    tbody td.note-cell::before { align-self: flex-start; padding-top: .2em; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <p class="doc-label"><!-- DOCUMENT CLASSIFICATION / CATEGORY --></p>
+    <h1><!-- DOCUMENT MAIN TITLE --></h1>
+    <p class="abstract">
+      <!-- DOCUMENT ABSTRACT: 概要・背景・結論を簡潔に記載 -->
+    </p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ================= セクション見本 ================= -->
+  <section id="section-01">
+    <div class="h-row">
+      <span class="h-num">01</span>
+      <h2>セクション見出し</h2>
+    </div>
+    <p class="conclusion">
+      本章の結論：読み手が知りたい要点をこの1行に集約する。装飾による強調ではなく構造で示す。
+    </p>
+
+    <p>
+      本文テキストを記述します。段落ごとの主張を明確にし、余分な修飾語を排除します。
+    </p>
+
+    <!-- 比較・対比グリッド -->
+    <div class="split">
+      <div class="col-a">
+        <h5>A案（採用 / メリット）</h5>
+        <ul>
+          <li>論理構造が明確で判断が容易</li>
+          <li>保守性・検索性に優れる</li>
+        </ul>
+      </div>
+      <div class="col-b">
+        <h5>B案（不採用 / デメリット）</h5>
+        <ul>
+          <li>過剰な装飾によりノイズが増大</li>
+          <li>印刷や自動処理で表示崩れが発生</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- レスポンシブ対応表 -->
+    <div class="tbl-wrap">
+      <table>
+        <caption>表1: 項目別評価一覧</caption>
+        <thead>
+          <tr>
+            <th scope="col">評価対象</th>
+            <th scope="col" class="mid">判定</th>
+            <th scope="col">選定理由・補足事項</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">提案構成</th>
+            <td class="mid" data-label="判定"><span class="mark y">○</span></td>
+            <td class="note-cell" data-label="補足事項">3点整理と対比構造で迅速な意思決定を支援</td>
+          </tr>
+          <tr>
+            <th scope="row">装飾要素</th>
+            <td class="mid" data-label="判定"><span class="mark n">×</span></td>
+            <td class="note-cell" data-label="補足事項">絵文字・グラデーションは排除し視覚ノイズを防止</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 代替文法リスト -->
+    <ol class="grammar">
+      <li><strong>階層は文字サイズと余白</strong> — 色分けではなくタイポグラフィとスペースで示す。</li>
+      <li><strong>関係は図で、数は表で</strong> — 構造化された表と比較で判断速度を高める。</li>
+    </ol>
+
+    <div class="it-line">
+      <b>実務の注意点：</b>装飾は読み手の判断を加速する場合のみ許容される。迷ったら「構造化されたテキストと表」に倒す。
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <!-- METADATA / COPYRIGHT / DOCUMENT CONTROL -->
+    IT Document Style Architecture Standard ／ 完全自己完結型HTML
+  </div>
+</footer>
+
+</body>
+</html>
