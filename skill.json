@@ -1,14 +1,14 @@
 {
-  "name": "it-html-document",
+  "name": "prop-hld-ir-html",
   "version": "1.0.0",
-  "description": "IT practical technical documentation, proposals, incident reports, and architecture specifications generator in standalone HTML format without visual clutter",
+  "description": "IT practical technical documentation, proposals (Proposal), high-level architecture designs (HLD), and incident reports (Incident Report) generator in standalone HTML format",
   "author": "custom",
-  "entry": "skills/it-html-document/SKILL.md",
+  "entry": "skills/prop-hld-ir-html/SKILL.md",
   "skills": [
     {
-      "name": "it-html-document",
-      "path": "skills/it-html-document",
-      "description": "IT現場の実務文書（提案書、障害報告書、設計仕様書、社内説明資料など）を高品質かつ自己完結型HTML形式で作成するための設計標準スキル。装飾を排し、紙と墨・結論ボックス・対比グリッド・レスポンシブ表組みで迅速な意思決定を支援する。"
+      "name": "prop-hld-ir-html",
+      "path": "skills/prop-hld-ir-html",
+      "description": "IT実務における重要文書（提案書:Proposal、基本/方式設計書:HLD、障害・調査報告書:Incident Report）を高品質かつ自己完結型HTML形式で作成するための設計標準スキル。装飾を排し、紙と墨・結論ボックス・対比グリッド・レスポンシブ表組みで迅速な意思決定を支援する。"
     }
   ]
 }

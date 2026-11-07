@@ -1,12 +1,12 @@
 ---
-name: it-html-document
-description: IT現場の実務文書（提案書、障害報告書、設計仕様書、社内説明資料など）を高品質かつ自己完結型HTML形式で作成するための設計標準スキル。過剰な装飾（グラデーション・絵文字・アイコンカード）を排し、紙と墨を基調とした高視認性タイポグラフィ、余白設計、レスポンシブ表組み、印刷最適化CSSを採用し、読み手の迅速な意思決定を促すドキュメントを構築する。
+name: prop-hld-ir-html
+description: IT実務における重要文書（提案書:Proposal、基本/方式設計書:HLD、障害・調査報告書:Incident Report）を高品質かつ自己完結型HTML形式で作成するための設計標準スキル。過剰な装飾（グラデーション・絵文字・アイコンカード）を排し、紙と墨を基調とした高視認性タイポグラフィ、余白設計、レスポンシブ表組み、印刷最適化CSSを採用し、読み手の迅速な意思決定を促す。
 ---
 
-# IT HTML Document Architect (`it-html-document`)
+# Proposal, HLD & Incident Report HTML Architect (`prop-hld-ir-html`)
 
 IT現場で使われる文書の読み手は、基本的に**「判断したい」**人です。  
-本スキルは、`it_document_style_guide.html` を原典とし、装飾ではなく**「構造と図表の精度」**によって読み手の判断速度を最大化するHTML技術文書の作成規約と設計標準を提供します。
+本スキルは、`it_document_style_guide.html` を原典とし、提案書（Proposal）、基本/方式設計書（High-Level Design: HLD）、障害・調査報告書（Incident Report: IR）などの重要実務文書において、装飾ではなく**「構造と図表の精度」**によって読み手の判断速度を最大化するHTML技術文書の作成規約と設計標準を提供します。
 
 ---
 

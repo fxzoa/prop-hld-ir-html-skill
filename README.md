@@ -1,16 +1,22 @@
-# it-html-document-skill
+# prop-hld-ir-html-skill
 
-`it-html-document` スキルを別 PC やチーム環境に `npx skills add` で 1 コマンド導入するための配布用 Git リポジトリです。
+`prop-hld-ir-html` スキルを別 PC やチーム環境に `npx skills add` で 1 コマンド導入するための配布用 Git リポジトリです。
 
 ---
 
 ## 概要
 
-IT現場で使われる文書の読み手は、基本的に**「判断したい」**人です。  
-本スキルは、過剰な装飾（グラデーション・絵文字・アイコンカード）を排し、**紙と墨を基調とした高視認性タイポグラフィ、余白設計、本章の結論ボックス、対比グリッド、レスポンシブ表組み、印刷最適化CSS** によって読み手の迅速な意思決定を促すドキュメントを構築する専門スキルです。
+IT実務における重要文書：
+* **提案書（Proposal）**
+* **基本・方式設計書（High-Level Design: HLD）**
+* **障害・調査報告書（Incident Report: IR）**
+
+これらの文書の読み手は、基本的に**「迅速に判断・意思決定したい」**人です。  
+本スキルは、過剰な装飾（グラデーション・絵文字・アイコンカード）を排し、**紙と墨を基調とした高視認性タイポグラフィ、余白設計、本章の結論ボックス、対比グリッド、レスポンシブ表組み、印刷最適化CSS** によって読み手の判断速度を最大化するドキュメントを構築する専門スキルです。
 
 * **Zero External Dependencies**: 外部CDN、外部スクリプト、Webフォントに依存しないオフライン稼働保証。
 * **Decision-Making Focus**: 絵文字・不要グラデーションを全廃し、構造・図表・比較表で判断材料を提供。
+* **Type A Native Visual Standard**: インラインSVG/CSSによるモノクロ基調＋朱色（`#b5371f`）1色ハイライト、厳密な凡例（Legend）付き。
 * **Responsive & Print-Ready**: モバイルでのテーブル縦積みリフロー（`data-label`）および印刷改ページ崩れ防止（`@media print`）。
 
 ---
@@ -19,17 +25,17 @@ IT現場で使われる文書の読み手は、基本的に**「判断したい�
 
 ### 1. GitHub リポジトリから直接インストール
 ```bash
-npx skills add btczoa/it-html-document-skill
+npx skills add btczoa/prop-hld-ir-html-skill
 ```
 
 または明示的にスキル名を指定する場合：
 ```bash
-npx skills add btczoa/it-html-document-skill --skill it-html-document
+npx skills add btczoa/prop-hld-ir-html-skill --skill prop-hld-ir-html
 ```
 
 ### 2. ローカル環境からの検証・追加
 ```bash
-npx skills add ./path/to/it-html-document-skill
+npx skills add ./path/to/prop-hld-ir-html-skill
 ```
 
 ---
@@ -41,7 +47,7 @@ npx skills add ./path/to/it-html-document-skill
 npx skills list
 
 # スキルの実行確認
-npx skills run it-html-document
+npx skills run prop-hld-ir-html
 ```
 
 ---
@@ -49,12 +55,12 @@ npx skills run it-html-document
 ## ディレクトリ構成
 
 ```text
-it-html-document-skill/
+prop-hld-ir-html-skill/
 ├── README.md
 ├── skill.json                         # スキル定義マニフェスト
 ├── SKILL.md                           # ルート定義
 └── skills/
-    └── it-html-document/              # スキル本体
+    └── prop-hld-ir-html/              # スキル本体
         ├── SKILL.md                   # スキル仕様・CSSトークン規格・プロンプト定義
         └── resources/
             └── template.html          # 実務向けHTMLテンプレート（紙と墨、レスポンシブ表組み）
