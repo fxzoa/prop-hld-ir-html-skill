@@ -25,12 +25,12 @@ IT実務における重要文書：
 
 ### 1. GitHub リポジトリから直接インストール
 ```bash
-npx skills add btczoa/prop-hld-ir-html-skill
+npx skills add fxzoa/prop-hld-ir-html-skill
 ```
 
 または明示的にスキル名を指定する場合：
 ```bash
-npx skills add btczoa/prop-hld-ir-html-skill --skill prop-hld-ir-html
+npx skills add fxzoa/prop-hld-ir-html-skill --skill prop-hld-ir-html
 ```
 
 ### 2. ローカル環境からの検証・追加
