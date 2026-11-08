@@ -28,10 +28,14 @@ IT現場で使われる文書の読み手は、基本的に**「判断したい�
   - **印刷（白黒）最適化と凡例（Legend）の義務付け**：主観的誇張を排し、シーケンス図・状態遷移図・ER図・因果フローを正確に描く。
 * **Diagram Generation Style Guidelines (Architecture / Infographics)**:
   When generating architecture diagrams, workflow charts, or system visual assets:
-  1. **Layout**: Adapt the layout flexibly (vertical top-down, horizontal left-to-right, or modular grid) based on system hierarchy, data flow, and readability requirements, using clear directional connectors/arrows.
-  2. **Aesthetics**: Clean, minimalist vector style with a solid white background. No cluttered elements or excessive gradients.
-  3. **Color Coding**: Use a harmonious tech palette (vibrant blue, soft purple, fresh green, or restrained single-accent for official docs) where each architectural layer has a distinct, consistent color.
-  4. **Typography & Icons**: Every card must feature a bold, legible title, a smaller secondary description, and a minimalist line-art icon on the left.
+  1. **Dual Architecture Diagram Standard (Rule.14)**:
+     - 基本/方式設計書（HLD）のシステム構成では、必ず以下の **2種類の図を対（ペア）として作成・配置** すること。
+       - **① ハイレベル論理アーキテクチャ図**: ユーザー、クライアントSPA、APIゲートウェイ/プロキシ、バックエンドAIモデル群、ユースケース別データフロー。
+       - **② インフラ・ネットワークレベル物理アーキテクチャ図**: 実行ランタイム（V8 Isolate / Docker）、暗号化境界（TLS）、ポート番号（443, 8000等）、ネットワーク境界（Public / ngrok トンネル / VPC）、認証トークン伝送経路。
+  2. **Layout**: Adapt the layout flexibly (vertical top-down, horizontal left-to-right, or modular grid) based on system hierarchy, data flow, and readability requirements, using clear directional connectors/arrows.
+  3. **Aesthetics**: Clean, minimalist vector style with a solid white background. No cluttered elements or excessive gradients.
+  4. **Color Coding**: Use a harmonious tech palette (vibrant blue, soft purple, fresh green, or restrained single-accent for official docs) where each architectural layer has a distinct, consistent color.
+  5. **Typography & Icons**: Every card must feature a bold, legible title, a smaller secondary description, and a minimalist line-art icon on the left.
 * **完全自己完結型（Zero External Dependency）**：外部CDN、外部Webフォント、外部JavaScriptに依存せず、ブラウザ単体やオフライン環境、ローカルファイルとして即座に破綻なくレンダリングされること。
 
 ---
